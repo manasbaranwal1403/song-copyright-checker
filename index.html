@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Musick</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Musick</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+<!-- Hero Section -->
+<section id="hero" class="hero section dark-background">
+
+  <div id="hero-carousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-item active">
+      <div class="carousel-container" id="hero-content">
+        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Musick</span></h2>
+        <p class="animate__animated animate__fadeInUp">Your go-to platform for finding any song and its copyright details through its audio file.</p>
+        <button class="btn-get-started animate__animated animate__fadeInUp" onclick="openFileUploader()">Check Your Song Now!</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Hidden file input for audio upload -->
+  <input type="file" id="audioUpload" accept=".mp3, .wav, .flac" style="display:none;" onchange="handleFileUpload(event)" />
+
+  <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+    <defs>
+      <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+    </defs>
+    <g class="wave1">
+      <use xlink:href="#wave-path" x="50" y="3"></use>
+    </g>
+    <g class="wave2">
+      <use xlink:href="#wave-path" x="50" y="0"></use>
+    </g>
+    <g class="wave3">
+      <use xlink:href="#wave-path" x="50" y="9"></use>
+    </g>
+  </svg>
+
+</section><!-- /Hero Section -->
+
+<script>
+  function openFileUploader() {
+    document.getElementById('audioUpload').click();
+  }
+
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+      // Show loading screen
+      document.getElementById('hero-content').innerHTML = `
+        <h2 class="animate__animated animate__fadeInDown">Analyzing your song...</h2>
+        <div class="loader"></div>
+        <p class="animate__animated animate__fadeInUp">Please wait while we process the audio file: <strong>${file.name}</strong></p>
+      `;
+
+      // Simulate backend processing delay
+      setTimeout(() => {
+        document.getElementById('hero-content').innerHTML = `
+          <h2 class="animate__animated animate__fadeInDown">Song Analyzed Successfully!</h2>
+          <p class="animate__animated animate__fadeInUp">Here are the details we found:</p>
+          <div class="analyzed-result animate__animated animate__fadeInUp">
+            <p><strong>Song Name:</strong> Sun Choti</p>
+            <p><strong>Artist:</strong> PRODIG</p>
+            <p><strong>Album:</strong> Sun Choti</p>
+            <p><strong>Released:</strong> 2025-06-23</p>
+            <p><strong>Label:</strong> Rezonate Initiatives</p>
+            <p><strong>Genre:</strong> Unknown</p>
+            <p><strong>BPM:</strong> Unknown</p>
+            <p><strong>ISRC:</strong> IND862503804</p>
+            <p><strong>UPC:</strong> 3617397839242</p>
+          </div>
+        `;
+      }, 3000);
+    }
+  }
+</script>
+
+<style>
+  /* Loader Style */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #ff4b2b; /* Accent color */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Song Details Styling */
+.analyzed-result {
+  margin-top: 20px;
+  background-color: none;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center; /* ✅ This will center the text */
+  width: fit-content; /* ✅ This will shrink the container to fit the content */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.analyzed-result p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #ffffff;
+  white-space: nowrap; /* ✅ Forces each detail to stay on one line */
+}
+
+
+
+
+</style>
+
+
+
+
+<!-- About + Call to Action Section -->
+<section id="about" class="about section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>About</h2>
+    <p>Who we are</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-12 content" data-aos="fade-up" data-aos-delay="100">
+        <p>
+          Musick is an easy-to-use, fast, and reliable <strong>audio copyright checker</strong> that helps you instantly find the copyright details of any song. Whether you are a <strong>musician, singer, rapper, music producer, record label owner</strong> or even just a <strong>casual music listener</strong>, Musick is built to help you <strong>check song ownership, music rights, and track copyright information</strong> simply by uploading an audio file.
+        </p>
+
+        <p>
+          Many times, creators unknowingly use copyrighted songs which can lead to strikes, takedowns, or even legal issues. With Musick, you can <strong>verify song copyright status, check who owns the song, find the ISRC code, UPC code, and the complete metadata</strong> of the track in seconds. Our platform supports common formats like <strong>mp3, wav, and flac</strong>, making it a one-stop solution for music copyright search and verification.
+        </p>
+
+        <p>
+          Musick is not just a <strong>song identification tool</strong>, it’s a complete <strong>music verification system</strong> that allows you to confidently release, remix, or use tracks knowing exactly who holds the rights. Whether you're planning to upload on streaming platforms or just want to discover the <strong>original artist, album, label, or release date</strong> of a song, Musick provides all the information you need.
+        </p>
+
+        <p>
+          This powerful tool is a product of <strong>DireNote Media</strong>, a dedicated platform focused on empowering independent artists, music professionals, and everyday users with the right resources to safely and confidently navigate the music industry.
+        </p>
+
+        <p>
+  Musick is perfect for those searching for:
+  <br><strong>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>Audio copyright checker<br>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>Song copyright information<br>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>Music rights checker<br>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>ISRC and UPC code finder<br>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>Check song ownership by audio<br>
+    <i class="bi bi-check-circle-fill" style="color: orange; margin-right: 5px;"></i>Music metadata search tool
+  </strong>
+</p>
+
+
+        <p>
+          Thousands of creators trust Musick to <strong>check copyright before using a song</strong>. Whether you’re verifying a beat, finding an artist, or identifying a track’s label, Musick saves you time, hassle, and potential risks.
+        </p>
+
+        <p>
+          Start using Musick today and protect your music journey.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section><!-- /About Section -->
+
+
+
+<!-- Call To Action Section (Now Informational Text Section) -->
+<section id="call-to-action" class="call-to-action section dark-background">
+
+  <div class="container">
+
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <div class="col-xl-9 text-center text-xl-start">
+        <h3>The Importance of Understanding Music Copyright</h3>
+        <p>
+          Many people underestimate the importance of verifying music copyrights. Music copyright is not just a legal formality—it directly affects your creative freedom, your ability to distribute your work, and your online reputation. With more platforms implementing strict copyright detection systems, even accidental use of copyrighted material can have serious consequences. It can lead to lost revenue, blocked content, and the unnecessary stress of copyright disputes.
+        </p>
+        <p>
+          Musick simplifies the process of copyright discovery. Instead of leaving creators and music enthusiasts to figure it out on their own, Musick offers a streamlined experience that brings clarity to complex ownership details. It is not limited to a specific type of user. Whether you are a professional artist, an amateur creator, a student working on a project, or just a curious music lover, Musick welcomes you. Everyone should have access to copyright information, not just those who can afford expensive legal services.
+        </p>
+        <p>
+          By using Musick, you are taking a proactive step toward protecting your creative work and respecting the original creators of the music you use and love. It’s a step toward making the internet a safer and more transparent place for music sharing, collaboration, and innovation. Our mission at DireNote Media is to bridge the gap between creativity and copyright awareness, and Musick is a core part of that vision.
+        </p>
+        <p>
+          With Musick, you no longer have to wonder about the risks. You can create, publish, share, and explore music with confidence, knowing that you have done your part in respecting intellectual property. Whether you are building a brand, releasing an album, creating a viral reel, or simply searching for that one song stuck in your head, Musick is here to guide you through it all.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section><!-- /Call To Action Section -->
+
+
+   
+
+     
+   
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <p>What they are saying about us</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 40
+            },
+            "1200": {
+              "slidesPerView": 3,
+              "spaceBetween": 10
+            }
+          }
+        }
+      </script>
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <h3>Arjun Mehra</h3>
+            <h4>Independent Singer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Musick has completely changed how I approach music releases. I can now instantly verify copyright details of my own and others' tracks. It's a blessing for independent musicians like me!</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <h3>Simran Kaur</h3>
+            <h4>Music Producer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>As a producer, it's critical to ensure the songs I work on are safe to use. Musick makes it effortless to check copyright information just by uploading the audio. Brilliant tool!</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <h3>Rohit Sharma</h3>
+            <h4>Hip-Hop Artist</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>I used to spend hours searching for song credits and rights info. Musick makes it happen in seconds. This is a real game-changer for Indian rappers who sample beats!</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <h3>Ayesha Sheikh</h3>
+            <h4>Music Label Owner</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Managing copyrights for my label's catalogue became super easy with Musick. It’s reliable, fast, and the perfect tool for music professionals.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <h3>Priya Nair</h3>
+            <h4>Music Enthusiast</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>I'm just a regular listener but Musick helped me find the artist of a beautiful track I had for years. It’s surprisingly useful even for music fans!</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+
+</section><!-- /Testimonials Section -->
+
+
+    
+ <!-- Faq Section -->
+<section id="faq" class="faq section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Frequently Asked Questions</h2>
+    <p>Frequently Asked Questions</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-12">
+        <div class="custom-accordion" id="accordion-faq">
+
+          <div class="accordion-item">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-1">
+                How does Musick work?
+              </button>
+            </h2>
+
+            <div id="collapse-faq-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-faq">
+              <div class="accordion-body">
+                Musick allows you to upload any audio file (mp3, wav, flac) and instantly analyzes it to find the song’s copyright details, such as artist, album, release date, label, ISRC, and more. It’s fast, simple, and requires no sign-up.
+              </div>
+            </div>
+          </div>
+          <!-- .accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-2">
+                Do I need to create an account to use Musick?
+              </button>
+            </h2>
+            <div id="collapse-faq-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-faq">
+              <div class="accordion-body">
+                No, you don’t need to create an account or register. Musick is designed to be an instant-access tool where you can directly upload your song and get the results without any login process.
+              </div>
+            </div>
+          </div>
+          <!-- .accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-3">
+                What audio formats does Musick support?
+              </button>
+            </h2>
+
+            <div id="collapse-faq-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-faq">
+              <div class="accordion-body">
+                Musick currently supports mp3, wav, and flac audio files. Simply upload your song in any of these formats to get the copyright details.
+              </div>
+            </div>
+          </div>
+          <!-- .accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-4">
+                Is Musick free to use?
+              </button>
+            </h2>
+
+            <div id="collapse-faq-4" class="collapse" aria-labelledby="headingFour" data-parent="#accordion-faq">
+              <div class="accordion-body">
+                Yes, Musick is currently free to use. You can upload songs and check their copyright details without any charges or subscriptions.
+              </div>
+            </div>
+          </div>
+          <!-- .accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-5">
+                Can I check any song, even if it’s not Indian?
+              </button>
+            </h2>
+
+            <div id="collapse-faq-5" class="collapse" aria-labelledby="headingFive" data-parent="#accordion-faq">
+              <div class="accordion-body">
+                Yes, Musick can analyze songs from around the world. The database is global and the tool is not limited to Indian music only.
+              </div>
+            </div>
+          </div>
+          <!-- .accordion-item -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /Faq Section -->
+
+
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Contact Us</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>PAN India</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+91 8400089792</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>contact@direnotemedia.com</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://www.direnotemedia.com/"><i class="search-heart"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/direnotemedia/#"><i class="bi bi-instagram"></i></a>
+        
+        <a href="https://www.linkedin.com/company/direnotemedia/"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Musick</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you've purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+          Product of <a href="https://direnotemedia.com/">DireNote Media</a> | a part of <a href="#">Rezonate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
